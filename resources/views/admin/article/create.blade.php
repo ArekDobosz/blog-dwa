@@ -24,8 +24,8 @@
 		tinymce.init({
     		selector: '#textarea',
     		toolbar: "image",
-  			plugins: "image imagetools"
+  			plugins: "image imagetools media"
 	  	});
 	});
-</script>
+</script>	
 @endsection

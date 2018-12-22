@@ -82,9 +82,10 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        // dd($request->all());
         $article->update([
             'title' => $request->title,
-            'constent' => $request->content,
+            'content' => $request->content,
             'is_published' => (bool)$request->is_published,
             'published_at' => $request->is_published ? date('Y-m-d H:i:s') : null
         ]);

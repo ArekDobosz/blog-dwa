@@ -42,4 +42,12 @@ class LoginController extends Controller
     {
         return Auth::guard('user');
     }
+
+    public function showLoginForm()
+    {
+        return view('auth.login')
+            ->with('hideTopContent', true)
+            ->with('hideSidebar', true)
+            ;
+    }
 }

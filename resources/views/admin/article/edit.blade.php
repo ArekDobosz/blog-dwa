@@ -1,12 +1,11 @@
 @extends('admin/app')
 @section('content')
 <div class="col-sm">
-	
 <form action="{{ route('article.update', $article->id) }}" method="POST">
 	{{ csrf_field() }}
 	{{ method_field("PATCH") }}
 	<div class="form-group">
-		<input type="text" class="form-control" name="title" value={{ $article->title }}>
+		<input type="text" class="form-control" name="title" value="{{ $article->title }}">
 	</div>
 	<div class="form-group">
 		<textarea class="form-control" rows="20" name="content" id="textarea">{{ $article->content }}</textarea>
@@ -29,7 +28,7 @@
 		tinymce.init({
     		selector: '#textarea',
     		toolbar: "image",
-  			plugins: "image imagetools"
+  			plugins: "image imagetools media"
 	  	});
 	});
 </script>

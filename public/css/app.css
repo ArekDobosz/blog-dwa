@@ -117,6 +117,10 @@ h1, h2, h3, h4, h5, h6 {
   height: auto;
 }
 
+.blog-post iframe {
+  width: 100%;
+}
+
 /*
  * Footer
  */
@@ -129,4 +133,36 @@ h1, h2, h3, h4, h5, h6 {
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
+}
+
+/*
+ * Bootstrap overiding
+ */
+
+ /*
+ * Login page
+ */
+.login {
+  width: 100%;
+  height: calc(100vh - 16.3125rem);
+  display: flex;
+  justify-content: center;
+  padding-top: 3.75rem;
+}
+
+.login .card {
+  padding: 2.5rem;
+  border-radius: .15rem;
+  -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.15);
+  box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.15);
+  background-color: #f9f9f9;
+}
+
+/*
+ * Form
+ */
+
+.form-control {
+  border-radius: .15rem;
 }
