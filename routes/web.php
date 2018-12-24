@@ -18,7 +18,7 @@ Route::get('article/{slug}', 'BlogController@showArticle')->name('show-article')
 
 Route::group(['prefix' => 'admin'], function(){
 	Route::group(['middleware' => 'admin'], function(){
-		// Route::get('article/create', 'ArticleController@create')->name('article/create');
+		Route::get('/', 'AdminController@index');
 		Route::resource('article', 'ArticleController');
 	});
 });

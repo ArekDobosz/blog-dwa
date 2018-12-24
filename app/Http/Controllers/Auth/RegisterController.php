@@ -49,11 +49,23 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'name.required' => 'Nazwa użytkownika jest wymagana.',
+            'name.max' => 'Nazwa nie powinna być dłuższa niż 255 znaków.',
+            'email.required' => 'Adres e-mail jest wymagany.',
+            'email.max' => 'Adres e-mail nie powinien być dłuższy niż 255 znaków.',
+            'email.email' => 'Wprowadzony adres e-mail jest nieprawidłowy.',
+            'email.unique' => 'Adres e-mail jest już zajęty.',
+            'password.required' => 'Hasło jest wymagane.',
+            'password.min' => 'Hasło powinno zawierać więcej niż 6 znaków.',
+            'password.confirmed' => 'Wprowadzone hasła nie są takie same.'
+        ];
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+        ], $messages);
     }
 
     /**
@@ -74,5 +86,13 @@ class RegisterController extends Controller
     protected function guard()
     {
         return Auth::guard('user');
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('auth.register')
+            ->with('hideTopContent', true)
+            ->with('hideSidebar', true)
+            ;
     }
 }

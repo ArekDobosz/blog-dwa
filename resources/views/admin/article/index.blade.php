@@ -2,9 +2,9 @@
 @section('content')
 <div class="col-sm">
 
-<a href="{{ route('article.create') }}" class="btn btn-success">Dodaj artykuł</a>
+<a href="{{ route('article.create') }}" class="btn btn-success pull-right">Dodaj artykuł</a>
 	
-<h1>Lista artykułów: </h1>
+<h1 class="pull-left">Lista artykułów: </h1>
 
 <table class="table table-hover">
 	<thead>

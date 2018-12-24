@@ -32,8 +32,9 @@ h1, h2, h3, h4, h5, h6 {
 .nav-scroller {
   position: relative;
   z-index: 2;
-  height: 2.75rem;
+  height: 3.25rem;
   overflow-y: hidden;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .nav-scroller .nav {
@@ -122,6 +123,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*
+ * Header
+ */
+ .btn-login {
+  margin-right: 10px;
+ }
+
+/*
  * Footer
  */
 .blog-footer {
@@ -142,15 +150,15 @@ h1, h2, h3, h4, h5, h6 {
  /*
  * Login page
  */
-.login {
+.form-container {
   width: 100%;
-  height: calc(100vh - 16.3125rem);
+  min-height: calc(100vh - 16.3125rem);
   display: flex;
   justify-content: center;
-  padding-top: 3.75rem;
+  padding: 1.75rem 0 2.75rem;
 }
 
-.login .card {
+.form-container .card {
   padding: 2.5rem;
   border-radius: .15rem;
   -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.15);

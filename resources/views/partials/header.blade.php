@@ -14,7 +14,8 @@
               </form>
 
       @else
-          <a class="btn btn-sm btn-outline-secondary" href="{{ route('login') }}">Sign up</a>
+          <a class="btn btn-sm btn-outline-secondary btn-login" href="{{ route('login') }}">Logowanie</a>
+          <a class="btn btn-sm btn-outline-secondary btn-register" href="{{ route('register') }}">Rejestracja</a>
       @endif
     </div>
   </div>

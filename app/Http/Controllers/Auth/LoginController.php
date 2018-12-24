@@ -50,4 +50,9 @@ class LoginController extends Controller
             ->with('hideSidebar', true)
             ;
     }
+
+    protected function getFailedLoginMessage()
+    {
+        return 'Wprowadzono niepoprawne dane logowania.';
+    }
 }
