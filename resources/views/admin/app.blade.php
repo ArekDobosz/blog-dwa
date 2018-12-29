@@ -36,6 +36,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Użytkownicy</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('category.index') }}">Kategorie</a>
+                    </li>
                 </ul>
             </div>
     </nav>

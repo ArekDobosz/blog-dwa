@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -24,6 +25,7 @@
 <body>
     <div class="container">
       @include('partials.header')
+      @include('partials.flash_message')
       @include('partials.navbar')
       @unless (isset($hideTopContent))
         @include('partials.sponsored_article')

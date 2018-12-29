@@ -13,12 +13,16 @@
 
 Auth::routes();
 
-Route::get('/', 'BlogController@index')->name('/');
+Route::get('/{slug?}', 'BlogController@index')->name('/');
 Route::get('article/{slug}', 'BlogController@showArticle')->name('show-article');
+
+Route::post('comment/{articleId}', 'CommentController@addComment')->name('comment.add');
+Route::patch('comment/{comment}', 'CommentController@update')->name('comment.update');
 
 Route::group(['prefix' => 'admin'], function(){
 	Route::group(['middleware' => 'admin'], function(){
 		Route::get('/', 'AdminController@index');
 		Route::resource('article', 'ArticleController');
+		Route::resource('category', 'CategoryController');
 	});
 });

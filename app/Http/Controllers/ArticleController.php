@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
 use Auth;
 
 class ArticleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,8 +34,10 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.article.create');
+    {        return view('admin.article.create')
+
+            ->with('categories', Category::all())
+            ;
     }
 
     /**
@@ -43,6 +52,9 @@ class ArticleController extends Controller
             'author' => Auth::guard('user')->id(),
             'title' => $request->title,
             'content' => $request->content,
+            'slug' => $request->slug,
+            'category_id' => $request->category_id,
+            'thumbnail' => $request->thumbnail,
             'is_published' => false
         ]);
 
@@ -66,10 +78,15 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit($article)
     {
+        $articleToShow = Article::with(['comments', 'comments.user'])
+            ->where('id', $article)
+            ->first();
+
         return view('admin.article.edit')
-            ->with('article', $article)
+            ->with('article', $articleToShow)
+            ->with('categories', Category::all())
         ;
     }
 
@@ -82,13 +99,26 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        // dd($request->all());
         $article->update([
             'title' => $request->title,
             'content' => $request->content,
             'is_published' => (bool)$request->is_published,
+            'category_id' => $request->category_id,
+            'slug' => $request->slug,
+            'thumbnail' => $request->thumbnail,
             'published_at' => $request->is_published ? date('Y-m-d H:i:s') : null
         ]);
+
+        if ($request->promoted) {
+            $oldPromotedArticle = Article::where('promoted', true)->first();
+            if ($oldPromotedArticle) {
+                $oldPromotedArticle->promoted = false;
+                $oldPromotedArticle->save();
+            }
+            $article->promoted = true;
+            $article->save();
+        }
+
         return back();
     }
 

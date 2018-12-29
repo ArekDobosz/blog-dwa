@@ -1,14 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
+body {
+  font-family: 'Dosis';
+}
+
 /* stylelint-disable selector-list-comma-newline-after */
 
 .blog-header {
   line-height: 1;
-  border-bottom: 1px solid #e5e5e5;
 }
 
 .blog-header-logo {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-family: Dosis, Georgia, "Times New Roman", serif;
   font-size: 2.25rem;
 }
 
@@ -17,7 +20,7 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-family: Dosis, Georgia, "Times New Roman", serif;
 }
 
 .display-4 {
@@ -35,6 +38,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 3.25rem;
   overflow-y: hidden;
   border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
 }
 
 .nav-scroller .nav {
@@ -173,4 +177,55 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-control {
   border-radius: .15rem;
+}
+
+/*
+ * Latest
+ */
+
+.latest-title {
+  font-size: 1.5rem;
+}
+
+.latest-thumbnail {
+  background-size: cover;
+  width: 300px;
+}
+
+/*
+ * Main content
+ */
+.blog-thumbnail {
+  height: 100px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .blog-thumbnail { 
+    height: 200px;
+  }
+}
+
+.comment-block {
+  padding: 1rem 1rem 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.comment-block .comment-header .username {
+  font-weight: bold;
+}
+
+.comment-block .comment-text {
+  padding: 0.5rem 1rem;
+}
+
+.comment-form {
+  padding: 1rem 0;
+}
+
+.comment-form .invalid-feedback {
+  display: inline-block;
+  font-size: 0.875rem;
 }
