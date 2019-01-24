@@ -11,11 +11,16 @@ class BlogController extends Controller
 {
     public function index($slug = '')
     {
+        $category = Category::getBySlug($slug);
+        $articles = $category 
+            ? Article::getByCategory($category->id)
+            : Article::getAllPublished();
+
     	return view('blog.index')
-    		->with('articles', Article::getAllPublished($slug))
+    		->with('articles', $articles)
             ->with('promoted', Article::getPromoted())
             ->with('latestArticles', Article::getLatestArticles())
-            ->with('category', Category::getBySlug($slug))
+            ->with('category', $category)
     		;
     }
 
@@ -28,7 +33,7 @@ class BlogController extends Controller
 
     	return view('article.show')
     		->with('article', $article)
-    		->with('hideTopContent', true)
+    		// ->with('hideTopContent', true)
     		;
     }
 }

@@ -8,6 +8,7 @@ use App\Helpers\Helper;
 class Article extends Model
 {
     const LATEST_COUNT = 2;
+    const PAGINATION = 4;
 
     protected $fillable = [
     	'author',
@@ -39,8 +40,8 @@ class Article extends Model
     {
     	return self::where('is_published', true)
             ->where('promoted', false)
-            ->get()
-            ->diff(self::getLatestArticles());
+            // ->whereNotIn('id', self::getLatestArticles()->pluck('id'))
+            ->paginate(self::PAGINATION);
     }
 
     public static function getPromoted()
@@ -62,6 +63,11 @@ class Article extends Model
             ->where('is_published', true)
             ->where('slug', $slug)
             ->first();
+    }
+
+    public static function getByCategory($id)
+    {
+        return self::where('category_id', $id)->paginate(self::PAGINATION);
     }
 
     public function getShortContent($limit)

@@ -27,13 +27,12 @@
       @include('partials.header')
       @include('partials.flash_message')
       @include('partials.navbar')
-      @unless (isset($hideTopContent))
+      {{-- @unless (isset($hideTopContent))
         @include('partials.sponsored_article')
         @include('partials.latest_articles')
-      @endunless
-    </div>
+      @endunless --}}
 
-    <main role="main" class="container">
+    <main role="main">
       <div class="row">
         @yield('content')
         @unless (isset($hideSidebar))
@@ -48,6 +47,7 @@
         <a href="#">Back to top</a>
       </p>
     </footer>
+    </div>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -59,6 +59,25 @@
                 e.preventDefault();
                 $('#logout').submit();
             })
+
+            $('body').scroll(function () {
+              console.log('scroll');
+            });
+
+            console.log(document.body.offsetHeight);
+
+            window.onscroll = function() {
+              var currentScrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+              console.log(currentScrollPos);
+              if (currentScrollPos > 52) {
+                $('.nav-scroller nav.nav').addClass('fixed-top');
+                // $('.nav-scroller nav.nav').addClass('container');
+                $('.nav .logo').removeClass('hidden');
+              } else {
+                $('.nav-scroller nav.nav').removeClass('fixed-top');
+                $('.nav .logo').addClass('hidden');
+              }
+            };
         });
     </script>
 </body>

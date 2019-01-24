@@ -16,8 +16,6 @@ class Category extends Model
     	if ($slug == '') {
     		return null;
     	}
-    	// dd($slug);
-    	// dd(self::where('slug', $slug)->first());
     	return self::where('slug', $slug)->first();
     }
 }

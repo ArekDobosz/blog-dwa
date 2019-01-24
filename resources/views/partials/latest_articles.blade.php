@@ -11,8 +11,8 @@
           </a>
         </h3>
         <div class="mb-1 text-muted">{{ $article->getPublishedDate() }}</div>
-        <p class="card-text mb-auto">{!! $article->getShortContent(100) !!}</p>
-        <a href="{{ route('show-article', $article->slug) }}">czytaj dalej</a>
+          <p class="card-text mb-auto">{!! $article->getShortContent(100) !!}</p>
+          <a href="{{ route('show-article', $article->slug) }}">czytaj dalej</a>
       </div>
       <div class="latest-thumbnail" style="background-image: url({{ $article->thumbnail }});"></div>
     </div>
