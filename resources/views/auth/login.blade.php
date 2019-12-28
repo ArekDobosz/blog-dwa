@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="form-container">
-    <div class="col-offset-md-1 col-md-10">
+    <div class="col-offset-md-1 col-md-10 col-offset-sm-0 col-sm-12">
         <div class="card">
             <div class="card-header text-center">Zaloguj</div>
             <div class="card-body">
@@ -61,6 +61,11 @@
                         </div>
                     </div>
                 </form>
+                <div class="mt-3 mb-0 text-center">
+                    <p class="text-center">Nie posiadasz konta, zarejestruj się <a href="{{ route('register') }}">tutaj</a></p>
+                </div>
+                <a href="{{ route('social-login', 'google') }}" class="btn btn-success btn-block">Zaloguj z google</a>
+                <a href="{{ route('social-login', 'facebook') }}" class="btn btn-info btn-block">Zaloguj z fb</a>
             </div>
         </div>
     </div>

@@ -2,11 +2,16 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use App\Helpers\Helper;
+use App\Helpers\DateHelper;
+use Carbon\Carbon;
 
 class Article extends Model
 {
+    use SoftDeletes;
+    
     const LATEST_COUNT = 2;
     const PAGINATION = 4;
 
@@ -38,8 +43,8 @@ class Article extends Model
 
     public static function getAllPublished()
     {
-    	return self::where('is_published', true)
-            ->where('promoted', false)
+        return self::where('is_published', true)
+            ->orderBy('id', 'desc')
             // ->whereNotIn('id', self::getLatestArticles()->pluck('id'))
             ->paginate(self::PAGINATION);
     }
@@ -67,17 +72,44 @@ class Article extends Model
 
     public static function getByCategory($id)
     {
-        return self::where('category_id', $id)->paginate(self::PAGINATION);
+        return self::where('is_published', true)
+            ->where('category_id', $id)
+            ->orderBy('id', 'desc')
+            ->paginate(self::PAGINATION);
+    }
+
+    public static function getAllGroupByMonth() 
+    {
+        return $result = self::where('is_published', true)
+            ->orderBy('created_at', 'DESC')
+            ->get()
+            ->groupBy(function($val) {
+                return Carbon::parse($val->created_at)->format('Y-m');
+            });
+    }
+
+    public static function getArticlesFromPeriodTime($date)
+    {
+        $startDate = Carbon::createFromDate(...$date)->startOfMonth();
+        $endDate = Carbon::createFromDate(...$date)->endOfMonth();
+
+        return self::whereBetween('created_at', [$startDate, $endDate])->where('is_published', true)->get();
     }
 
     public function getShortContent($limit)
     {
-    	return str_limit($this->content, $limit);
+        $fullArticleArr = explode(' ', $this->content);
+        return implode(' ', array_slice($fullArticleArr, 0, 40)).'...';
     }
 
     public function getPublishedDate()
     {
     	return Helper::formatDate($this->published_at);
+    }
+
+    public function getCreatedDate()
+    {
+        return Helper::formatDate($this->created_at);
     }
 
     public function getAuthorName()
@@ -90,8 +122,18 @@ class Article extends Model
         return $this->category()->first() ? $this->category()->first()->name : '';
     }
 
+    public function getCategorySlug()
+    {
+        return $this->category()->first() ? $this->category()->first()->slug : '';
+    }
+
     public function getCommentsCount()
     {
-        return $this->comments()->get()->count();
+        return $this->comments()->where('visible', true)->get()->count();
+    }
+
+    public function isPublished()
+    {
+        return $this->is_published ? 'Tak' : 'Nie';
     }
 }

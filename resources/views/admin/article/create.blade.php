@@ -33,6 +33,12 @@
 		<label for="category_id">Kategoria</label>
 		<textarea class="form-control" rows="20" name="content" id="textarea"></textarea>
 	</div>
+	<div class="form-group">
+		<input type="checkbox" name="is_published">
+		<label class="form-check-label" for="is_published">
+			Opublikowany
+		</label>
+	</div>
 	<input type="submit" class="btn btn-success" value="Dodaj">
 </form>
 </div>
@@ -41,6 +47,7 @@
 @section('js')
 @parent()
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=bduwccdo8ui9vw5pbts074njq8viua4192lmjp8zy71yca67"></script>
+
 <script>
 	$(document).ready(function() {
 		tinymce.init({

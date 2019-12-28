@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     @yield('css')
 </head>
 <body>
@@ -34,10 +34,13 @@
                         <a class="nav-link" href="{{ route('article.index') }}">Artykuły</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Użytkownicy</a>
+                        <a class="nav-link" href="{{ route('user.index') }}">Użytkownicy</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('category.index') }}">Kategorie</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('message.index') }}">Shoutbox</a>
                     </li>
                 </ul>
             </div>
