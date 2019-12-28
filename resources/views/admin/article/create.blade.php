@@ -46,12 +46,12 @@
 @endsection
 @section('js')
 @parent()
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=bduwccdo8ui9vw5pbts074njq8viua4192lmjp8zy71yca67"></script>
-
+<script src="https://cdn.tiny.cloud/1/t9kt2wecrdt5ntoilm8t8kyn87rw9mv1lfabwyl2qz7xfexi/tinymce/5/tinymce.min.js"></script>
 <script>
 	$(document).ready(function() {
 		tinymce.init({
     		selector: '#textarea',
+			paste_as_text: true,
     		toolbar: "image",
   			plugins: "image imagetools media"
 	  	});
