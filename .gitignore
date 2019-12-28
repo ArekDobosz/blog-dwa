@@ -6,12 +6,9 @@
 Homestead.json
 Homestead.yaml
 .env
-t.env
 /public/img/tmp
 /public/img/item
 /public/img/category
-/bf.sublime-project
-/bf.sublime-workspace
 /start.bat
 /cron.bat
 /public/sitemap.xml
