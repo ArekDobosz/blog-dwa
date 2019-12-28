@@ -3,7 +3,13 @@
 	<div class="col-md-8 blog-main">
         <div class="blog-post">
             <h2 class="blog-post-title">{!! $article->title !!}</h2>
-            <p class="blog-post-meta">{{ $article->getPublishedDate() }} przez <a href="#">{{ $article->getAuthorName() }}</a></p>
+            <p class="blog-post-meta">{{ $article->getPublishedDate() }}
+				przez 
+				<a href="#">{{ $article->getAuthorName() }}</a>
+				@if (Auth::guard('user')->user()->hasAdminAccess() && Auth::guard('user')->user()->id === $article->author)
+					| <a href="{{ route('article.edit', $article->id) }}">edytuj</a>
+				@endif
+			</p>
             <p>{!! $article->content !!}</p>
         </div>
         <hr>

@@ -1,16 +1,17 @@
 @extends('layouts.base')
 @section('content')
 	<div class="col-md-8 blog-main">
-	  	@if ($category)
+	  	{{-- @if ($category)
 	  		<h3 class="pb-3 mb-4 font-italic border-bottom">
 	  			Artykuły w kategorii "{{ $category->name }}":
 	  		</h3>
-	  	@endif
+	  	@endif --}}
 	    @forelse ($articles as $article)
 	        <div class="blog-post shadow">
 	            <h2 class="blog-post-title">{!! $article->title !!}</h2>
 	            <p class="blog-post-meta">
-	            	{{ $article->getPublishedDate() }} przez <a href="#">{{ $article->getAuthorName() }}</a>
+	            	{{ $article->getCreatedDate() }} przez <a href="#">{{ $article->getAuthorName() }}</a>
+					| <a href="{{ route('/', $article->getCategorySlug()) }}">{{ $article->getCategoryName() }}</a>
 	            </p>
 	            {{-- <div class="blog-thumbnail" style="background-image: url({{ $article->thumbnail }});"></div> --}}
 	            <p>{!! $article->getShortContent(300) !!} <a href={{ route('show-article', $article->slug) }}>czytaj dalej</a></p>

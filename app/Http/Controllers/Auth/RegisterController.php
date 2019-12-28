@@ -57,14 +57,14 @@ class RegisterController extends Controller
             'email.email' => 'Wprowadzony adres e-mail jest nieprawidłowy.',
             'email.unique' => 'Adres e-mail jest już zajęty.',
             'password.required' => 'Hasło jest wymagane.',
-            'password.min' => 'Hasło powinno zawierać więcej niż 6 znaków.',
+            'password.min' => 'Hasło powinno zawierać więcej niż 3 znaki.',
             'password.confirmed' => 'Wprowadzone hasła nie są takie same.'
         ];
 
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'password' => ['required', 'string', 'min:3', 'confirmed'],
         ], $messages);
     }
 

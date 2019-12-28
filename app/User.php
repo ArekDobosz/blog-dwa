@@ -28,8 +28,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    const ROLE = [
+        'role_admin' => 'Admin',
+        'role_user' => 'Użytkownik'
+    ];
+
     public function firstName()
     {
         return explode(' ', $this->name)[0];
+    }
+
+    public function hasAdminAccess() {
+        return $this->role === 'role_admin';
+    }
+
+    public function getRole() {
+        return self::ROLE[$this->role];
     }
 }
